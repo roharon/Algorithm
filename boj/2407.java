@@ -13,19 +13,18 @@ public class Main{
         int M = Integer.parseInt(st.nextToken());
 
         BigInteger result = BigInteger.ONE;
-        BigInteger M_fac= BigInteger.ONE;
 
         int near = N-M < M ? N-M : M;
-
+            
         for(int n = N; n > N-near; n--){
             result = result.multiply(BigInteger.valueOf(n));
         }
 
         for(int m = 1; m<=near; m++){
-            M_fac = M_fac.multiply(BigInteger.valueOf(m));
+            result = result.divide(BigInteger.valueOf(m));
         }
 
-        System.out.println(result.divide(M_fac));
+        System.out.println(result);
 
     }
 }
