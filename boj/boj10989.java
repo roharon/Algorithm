@@ -5,42 +5,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class boj10989{
+    static final int max = 10001;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int N = Integer.parseInt(br.readLine());  
-        ArrayList<Integer> data = new ArrayList<Integer>();
+        short[] data = new short[max]; 
         
+        int N = Integer.parseInt(br.readLine());
         StringBuffer sb = new StringBuffer();
 
+        short temp;
+
         for(int idx = 0; idx < N; idx++){
-            data.add(Integer.parseInt(br.readLine()));
+            temp = Short.parseShort(br.readLine());
+            data[temp]++;
+        }
+
+        for(int idx = 1; idx<max; idx++){
+            //cuz in this problem,
+            //input numbers are natural number. So it starts at 1
+            for(int num = 0; num < data[idx]; num++){
+                sb.append(idx + "\n");
+            }
         }
         // input array
-
-        int maxValue = Collections.max(data);
-
-        int[] countArr = new int[maxValue+1];
-        int[] result = new int[N];
-
-        for(int idx = 0; idx < N; idx++){
-            countArr[data.get(idx)] += 1;
-        }
-        //counting number on data ()
-
-        for(int idx = 1;  idx < maxValue+1; idx++){
-            countArr[idx] += countArr[idx-1];
-        }
-        // count sum
-
-        for(int idx = N-1; idx>=0; idx--){
-            result[--countArr[data.get(idx)]] = data.get(idx);
-        }
-        //sort
-
-        for(int idx = 0; idx < N; idx++){
-            sb.append(result[idx] + "\n");
-        }
 
         System.out.println(sb);
     }
